@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/drawable/ic_task_image.xml" value="0.265" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/drawable/shape_button_rounded.xml" value="0.265" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/drawable/white_border_shape_button_rounded.xml" value="0.265" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_intro.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_splash.xml" value="0.358695652173913" />
       </map>
     </option>
