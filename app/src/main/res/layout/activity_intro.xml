@@ -21,7 +21,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="288dp"
+        android:layout_height="250dp"
         android:layout_marginTop="@dimen/intro_screen_image_marginTop"
         android:contentDescription="@string/image_contentDescription"
         android:src="@drawable/ic_task_image" />
@@ -34,7 +34,6 @@
         android:textColor="@color/primary_text_color"
         android:textSize="@dimen/lets_get_started_text_size" />
 
-    <!--suppress AndroidUnknownAttribute -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,6 +63,7 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/btn_text_size" />
 
+
     <Button
         android:id="@+id/btn_sign_up_intro"
         android:layout_width="match_parent"
@@ -72,12 +72,13 @@
         android:layout_marginStart="@dimen/btn_marginStartEnd"
         android:layout_marginTop="@dimen/intro_screen_sign_up_btn_marginTop"
         android:layout_marginEnd="@dimen/btn_marginStartEnd"
-        android:background="@drawable/shape_button_rounded"
+        android:background="@drawable/white_border_shape_button_rounded"
         android:gravity="center"
         android:paddingTop="@dimen/btn_paddingTopBottom"
         android:paddingBottom="@dimen/btn_paddingTopBottom"
         android:text="@string/sign_up"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/btn_text_size" />
+
 </LinearLayout>
 
