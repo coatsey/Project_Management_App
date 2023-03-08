@@ -1,10 +1,11 @@
-package com.example.projectmanagement
+package com.example.projectmanagement.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager.*
+import com.example.projectmanagement.R
 
 
 class SplashActivity : AppCompatActivity() {
