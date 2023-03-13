@@ -1,12 +1,14 @@
 package com.example.projectmanagement.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.text.TextUtils
 import android.view.WindowManager.*
 import android.widget.Toast
 import com.example.projectmanagement.R
+import com.example.projectmanagement.firebase.FirestoreClass
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.auth.User
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : BaseActivity() {
@@ -19,6 +21,18 @@ class SignUpActivity : BaseActivity() {
             LayoutParams.FLAG_FULLSCREEN,
             LayoutParams.FLAG_FULLSCREEN
         )
+    }
+
+    fun userRegisteredSuccess(){
+        Toast.makeText(
+            this,
+            "You have successfully registered"
+            , Toast.LENGTH_LONG
+        ).show()
+        hideProgressDialog()
+
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
     private fun setupActionBar(){
@@ -43,11 +57,22 @@ class SignUpActivity : BaseActivity() {
         val password: String = et_password.text.toString()
 
         if(validateForm(name, email, password)){
-            Toast.makeText(
-                this@SignUpActivity,
-                "Registered",
-                Toast.LENGTH_SHORT
-            ).show()
+           showProgressDialog(resources.getString(R.string.please_wait))
+            FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val firebaseUser: FirebaseUser = task.result!!.user!!
+                        val registeredEmail = firebaseUser.email!!
+                        val user = com.example.projectmanagement.models.User(firebaseUser.uid, name, registeredEmail)
+
+                        FirestoreClass().registerUser(this, user)
+                    } else {
+                        Toast.makeText(
+                            this,
+                            task.exception!!.message, Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
         }
     }
 
