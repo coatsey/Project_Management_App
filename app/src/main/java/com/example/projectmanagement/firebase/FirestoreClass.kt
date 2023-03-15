@@ -1,5 +1,8 @@
 package com.example.projectmanagement.firebase
 
+import android.app.Activity
+import com.example.projectmanagement.activities.MainActivity
+import com.example.projectmanagement.activities.MyProfileActivity
 import com.example.projectmanagement.activities.SignInActivity
 import com.example.projectmanagement.activities.SignUpActivity
 import com.example.projectmanagement.models.User
@@ -21,17 +24,25 @@ class FirestoreClass {
             }
     }
 
-    fun signInUser(activity: SignInActivity){
+    fun loadUserData(activity: Activity){
         mFireStore.collection(Constants.Users)
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
                 val loggedInUser = document.toObject(User::class.java)
-                if (loggedInUser !=null)
-                activity.signInSuccess(loggedInUser)
+                when(activity){
+                    is SignInActivity ->{
+                        activity.signInSuccess(loggedInUser!!)
+                    }
+                    is MainActivity ->{
+                        activity.updateNavigationUserDetails(loggedInUser!!)
+                    }
+                    is MyProfileActivity ->{
+                        activity.setUserDataInUI(loggedInUser!!)
+                    }
+                }
             }
-
-    }
+        }
 
    fun getCurrentUserId(): String{
        var currentUser = FirebaseAuth.getInstance().currentUser
