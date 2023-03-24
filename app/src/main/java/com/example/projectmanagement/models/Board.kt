@@ -16,7 +16,8 @@ data class Board(
         source.readString()!!,
         source.readString()!!,
         source.createStringArrayList()!!,
-        source.readString()!!
+        source.readString()!!,
+        source.createTypedArrayList(Task.CREATOR)!!
     )
 
     override fun describeContents() = 0
@@ -27,6 +28,7 @@ data class Board(
         writeString(createdBy)
         writeStringList(assignedTo)
         writeString(documentId)
+        writeTypedList(taskList)
     }
 
     companion object {
