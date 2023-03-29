@@ -12,6 +12,7 @@
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_create_board.xml" value="0.31232876712328766" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_intro.xml" value="0.14722222222222223" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_members.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_my_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_sign_in.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
@@ -22,9 +23,11 @@
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/dialog_progress.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/item_board.xml" value="0.27421875" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/item_card.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/item_member.xml" value="0.23783783783783785" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/item_task.xml" value="0.2078804347826087" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/coats/AndroidStudioProjects/ProjectManagement/app/src/main/res/menu/menu_members.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

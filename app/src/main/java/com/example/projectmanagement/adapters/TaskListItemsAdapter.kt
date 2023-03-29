@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectmanagement.R
 import com.example.projectmanagement.activities.TaskListActivity
-import com.example.projectmanagement.models.Card
 import com.example.projectmanagement.models.Task
 import kotlinx.android.synthetic.main.item_task.view.*
 
@@ -141,14 +140,14 @@ open class TaskListItemsAdapter(
 
         builder.setMessage("Are you sure you want to delete $title.")
         builder.setIcon(android.R.drawable.ic_dialog_alert)
-        builder.setPositiveButton("Yes") { dialogInterface, which ->
+        builder.setPositiveButton("Yes") { dialogInterface, _ ->
             dialogInterface.dismiss()
             if (context is TaskListActivity) {
                 context.deleteTaskList(position)
             }
         }
 
-        builder.setNegativeButton("No") { dialogInterface, which ->
+        builder.setNegativeButton("No") { dialogInterface, _ ->
             dialogInterface.dismiss()
         }
         val alertDialog: AlertDialog = builder.create()
