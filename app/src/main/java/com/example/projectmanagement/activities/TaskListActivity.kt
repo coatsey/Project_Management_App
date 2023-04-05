@@ -15,6 +15,7 @@ import com.example.projectmanagement.firebase.FirestoreClass
 import com.example.projectmanagement.models.Board
 import com.example.projectmanagement.models.Card
 import com.example.projectmanagement.models.Task
+import com.example.projectmanagement.models.User
 import com.example.projectmanagement.utils.Constants
 import kotlinx.android.synthetic.main.activity_task_list.*
 
@@ -22,6 +23,7 @@ class TaskListActivity : BaseActivity() {
 
     private lateinit var mBoardDetails: Board
     private lateinit var mBoardDocumentId: String
+    private lateinit var mAssignedMemberDetailList: ArrayList<User>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,13 +69,18 @@ class TaskListActivity : BaseActivity() {
     }
 
     fun cardDetails(taskListPosition: Int, cardPosition: Int){
-        startActivity(Intent(this, CardDetailsActivity::class.java))
+        val intent = Intent(this, CardDetailsActivity::class.java)
+        intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
+        intent.putExtra(Constants.TASK_LIST_ITEM_POSITION, taskListPosition)
+        intent.putExtra(Constants.CARD_LIST_ITEM_POSITION, cardPosition)
+        intent.putExtra(Constants.BOARD_MEMBERS_LIST, mAssignedMemberDetailList)
+        startActivityForResult(intent, CARD_DETAILS_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK
-            && requestCode == MEMBERS_REQUEST_CODE
+            && requestCode == MEMBERS_REQUEST_CODE || requestCode == CARD_DETAILS_REQUEST_CODE
         ) {
             showProgressDialog(resources.getString(R.string.please_wait))
             FirestoreClass().getBoardDetails(this@TaskListActivity, mBoardDocumentId)
@@ -97,6 +104,12 @@ class TaskListActivity : BaseActivity() {
 
         val adapter = TaskListItemsAdapter(this@TaskListActivity, mBoardDetails.taskList)
         rv_task_list.adapter = adapter
+
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getAssignedMembersListDetails(
+            this@TaskListActivity,
+            mBoardDetails.assignedTo
+        )
     }
 
     fun createTaskList(taskListName: String) {
@@ -160,7 +173,15 @@ class TaskListActivity : BaseActivity() {
         FirestoreClass().addUpdateTaskList(this@TaskListActivity, mBoardDetails)
     }
 
+    fun boardMembersDetailList(list: ArrayList<User>) {
+
+        mAssignedMemberDetailList = list
+
+        hideProgressDialog()
+    }
+
     companion object {
         const val MEMBERS_REQUEST_CODE: Int = 13
+        const val CARD_DETAILS_REQUEST_CODE: Int = 14
     }
 }

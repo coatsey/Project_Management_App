@@ -32,6 +32,14 @@ open class CardListItemsAdapter(
 
         if (holder is MyViewHolder) {
 
+            if(model.labelColor.isNotEmpty()){
+                holder.itemView.view_label_color.visibility = View.VISIBLE
+                holder.itemView.view_label_color
+                    .setBackgroundColor(android.graphics.Color.parseColor(model.labelColor))
+            }else{
+                holder.itemView.view_label_color.visibility = View.GONE
+            }
+
             holder.itemView.tv_card_name.text = model.name
             holder.itemView.setOnClickListener {
                 if (onClickListener !=null){

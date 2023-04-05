@@ -71,7 +71,7 @@ class FirestoreClass {
             }
     }
 
-    fun addUpdateTaskList(activity: TaskListActivity, board: Board){
+    fun addUpdateTaskList(activity: Activity, board: Board){
         val taskListHashMap = HashMap<String, Any>()
         taskListHashMap[Constants.TASK_LIST] = board.taskList
 
@@ -82,10 +82,15 @@ class FirestoreClass {
                 Log.e(
                     activity.javaClass.simpleName,
                     "TaskList updated successfully")
-                activity.addUpdateTaskListSuccess()
+                if(activity is TaskListActivity)
+                    activity.addUpdateTaskListSuccess()
+                else if (activity is CardDetailsActivity)
+                    activity.addUpdateTaskListSuccess()
             }.addOnFailureListener {
                 Exception ->
-                activity.hideProgressDialog()
+                if(activity is TaskListActivity)
+                    activity.hideProgressDialog()
+                else if (activity is CardDetailsActivity)
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while updating TaskList", Exception)
@@ -177,27 +182,42 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun getAssignedMembersListDetails(
-        activity: MembersActivity, assignedTo: ArrayList<String>){
+    fun getAssignedMembersListDetails(activity: Activity, assignedTo: ArrayList<String>) {
+
         mFireStore.collection(Constants.Users)
-            .whereIn(Constants.ID, assignedTo)
+            .whereIn(
+                Constants.ID,
+                assignedTo
+            )
             .get()
-            .addOnSuccessListener {
-                document->
-                Log.e(activity.javaClass.simpleName,
-                document.documents.toString())
+            .addOnSuccessListener { document ->
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
 
-                val userList : ArrayList<User> = ArrayList()
+                val usersList: ArrayList<User> = ArrayList()
 
-                for(i in document.documents){
+                for (i in document.documents) {
                     val user = i.toObject(User::class.java)!!
-                    userList.add(user)
+                    usersList.add(user)
                 }
-                activity.setupMembersList(userList)
-            }.addOnFailureListener { e ->
 
-                activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
+                if(activity is MembersActivity) {
+                    activity.setupMembersList(usersList)
+                }else if(activity is TaskListActivity) {
+                    activity.boardMembersDetailList(usersList)
+                }
+            }
+            .addOnFailureListener { e ->
+                if(activity is MembersActivity) {
+                    activity.hideProgressDialog()
+                }else if(activity is TaskListActivity){
+                    activity.hideProgressDialog()
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while creating a board.",
+                    e
+                )
             }
     }
 
