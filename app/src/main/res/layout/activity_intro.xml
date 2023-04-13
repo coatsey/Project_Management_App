@@ -72,7 +72,7 @@
         android:layout_marginStart="@dimen/btn_marginStartEnd"
         android:layout_marginTop="@dimen/intro_screen_sign_up_btn_marginTop"
         android:layout_marginEnd="@dimen/btn_marginStartEnd"
-        android:background="@drawable/white_border_shape_button_rounded"
+        android:background="@drawable/shape_button_rounded"
         android:gravity="center"
         android:paddingTop="@dimen/btn_paddingTopBottom"
         android:paddingBottom="@dimen/btn_paddingTopBottom"
