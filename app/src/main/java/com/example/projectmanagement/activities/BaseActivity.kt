@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.projectmanagement.activities
 
 import android.app.Dialog

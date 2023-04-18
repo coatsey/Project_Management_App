@@ -22,11 +22,10 @@ import com.example.projectmanagement.utils.Constants
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 
+@Suppress("DEPRECATION")
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var mUserName: String
@@ -189,13 +188,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         editor.apply()
         showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass().loadUserData(this, true)
-    }
-
-    private fun updateFCMToken(token: String){
-        val userHashMap = HashMap<String, Any>()
-        userHashMap[Constants.FCM_TOKEN] = token
-        showProgressDialog(resources.getString(R.string.please_wait))
-        FirestoreClass().updateUserProfileData(this, userHashMap)
     }
 
     companion object {
